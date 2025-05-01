@@ -230,6 +230,11 @@ public class EFQRCodeGenerator: NSObject {
             imageQRCode = nil
         }
     }
+    public var iconPosition: CGPoint = CGPoint(x: 0.5, y: 0.5) {
+        didSet {
+            imageQRCode = nil
+        }
+    }
     /// Size of the icon image, defaults to 20% of `size` if `nil`.
     public var iconSize: EFIntSize? = nil {
         didSet {
@@ -805,8 +810,8 @@ public class EFQRCodeGenerator: NSObject {
             icon,
             in: CGRect(
                 origin: CGPoint(
-                    x: CGFloat(context.width - size.width) / 2.0,
-                    y: CGFloat(context.height - size.height) / 2.0
+                    x: CGFloat(context.width - size.width) * iconPosition.x,
+                    y: CGFloat(context.height - size.height) * iconPosition.y
                 ),
                 size: size.cgSize
             )
